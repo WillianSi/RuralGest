@@ -33,18 +33,22 @@
     <li class="nav-item">
         <a class="nav-link" href="../ordem/cad_ordem.php">
             <i class="fas fa-fw fa-coins"></i>
-            <span>Adicionar gasto</span></a>
+            <span>Adicionar operação</span></a>
 
         <a class="nav-link" href="../servico/servico.php">
             <i class="fas fa-fw fa-plus-circle"></i>
-            <span>Adicionar serviços</span></a>
+            <span>Serviços rurais</span></a>
 
         <a class="nav-link" href="../ordem/ordem.php">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tabela de gastos</span></a>
+            <span>Tabela Financeira</span></a>
+
+        <a class="nav-link" href="../ordem/ordem.php">
+            <i class="fas fa-fw fa-sun"></i>
+            <span>Tempo</span></a>
 
         <a class="nav-link" href="../contato/contato.php">
-            <i class="fas fa-fw fa-envelope"></i>
+            <i class="fas fa-cloud fa-envelope"></i>
             <span>Contato</span></a>
     </li>
 

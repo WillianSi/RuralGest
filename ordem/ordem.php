@@ -59,11 +59,12 @@ require_once('../layout/sidebar.php');
                         <thead>
                             <tr>
                                 <th style="display:none" ;>cod</th>
-                                <th>Nome</th>
-                                <th>Servico</th>
-                                <th>Tipo</th>
-                                <th class="text-center">Descrição</th>
+                                <th class="text-center">Servico</th>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Preço</th>
                                 <th class="text-center">Data do Serviço</th>
+                                <th class="text-center">Descrição</th>
+                                <th class="text-center">Nota fiscal</th>
                                 <th class="text-center" data-orderable="false">Atualizar</th>
                                 <th class="text-center" data-orderable="false">Excluir</th>
                             </tr>

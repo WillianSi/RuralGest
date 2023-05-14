@@ -2210,6 +2210,10 @@ textarea.form-control {
   color: #858796;
 }
 
+.form-check-input:checked {
+  background-color: green;
+}
+
 .form-check-label {
   margin-bottom: 0;
 }
