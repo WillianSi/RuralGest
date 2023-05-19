@@ -4,9 +4,10 @@ require_once('../valida_session/valida_session.php');
 require_once('../layout/header.php'); 
 require_once('../layout/sidebar.php'); 
 require_once ("../bd/bd_usuario.php");
+require_once ("../bd/bd_generico.php");
 
 $codigo = $_GET['cod'];
-$dados = buscaUsuarioeditar($codigo);
+$dados = buscaDadoseditarPerfil($tabela,$codigo);
 $nome = $dados["nome"];
 $email = $dados["email"];
 $status = $dados["status"];

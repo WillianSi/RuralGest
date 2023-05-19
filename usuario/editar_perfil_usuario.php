@@ -3,11 +3,12 @@
 require_once('../valida_session/valida_session.php');
 require_once('../layout/header.php'); 
 require_once('../layout/sidebar.php'); 
-require_once ("../bd/bd_usuario.php");
+require_once ("../bd/bd_generico.php");
 
-// $dados = buscaUsuarioeditar($_SESSION['cod_usu']);
-// $nome = $dados["nome"];
-// $email = $dados["email"];
+$tabela = "usuario";
+$dados = buscaDadoseditarPerfil($tabela,$_SESSION['cod_usu']);
+$nome = $dados["nome"];
+$email = $dados["email"];
 ?>
 
 <!-- Main Content -->

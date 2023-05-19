@@ -8,7 +8,10 @@ $status = $_POST["status"];
 $data=date("y/m/d");
 
 require_once ("../bd/bd_usuario.php");
-$dados = buscaUsuario($email);
+require_once ("../bd/bd_generico.php");
+
+$tabela = "usuario";
+$dados = consultaEmail($tabela,$email);
 
 if($dados != 0){
 	$_SESSION['texto_erro'] = 'Este email já existe cadastrado no sistema!';

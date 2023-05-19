@@ -43,4 +43,89 @@ function listaDados($tabela){
     return $lista;
 }
 
+function consultaEmail($tabela,$email){
+    $conexao = conecta_bd();
+    $query = $conexao->prepare("SELECT * FROM $tabela
+                WHERE email = ?");
+
+    $query->bindParam(1,$email);
+    $query->execute();
+    $retorno = $query->fetch(PDO::FETCH_ASSOC);
+    if ($retorno) {
+        return 1;
+    }else{
+        return 0;
+    }   
+}
+
+function buscaDadoseditarPerfil($tabela,$codigo){
+    $conexao = conecta_bd();
+    $query = $conexao->prepare("SELECT * FROM $tabela
+                WHERE cod = ?");
+
+    $query->bindParam(1,$codigo);
+    $query->execute();
+    $lista = $query->fetch(PDO::FETCH_ASSOC);
+
+    return $lista;
+}
+
+function editarSenha($tabela,$codigo,$senha){
+    $conexao = conecta_bd();
+
+    $query = $conexao->prepare("SELECT * FROM $tabela WHERE cod = ?");
+    $query->bindParam(1,$codigo);
+    $query->execute();
+    $retorno = $query->fetch(PDO::FETCH_ASSOC);
+    if(count($retorno) > 0){
+        $query = $conexao->prepare("UPDATE $tabela SET senha = ? WHERE cod = ?");
+        $query->bindParam(1, $senha);
+        $query->bindParam(2, $codigo);
+        $retorno = $query->execute();//retorno boolean padrao TRUE
+        if($retorno){
+            return 1;
+        } else{
+            return 0;
+        }      
+    }
+
+}
+
+function removeDados($tabela,$codigo){
+    $conexao = conecta_bd();
+
+    $query = $conexao->prepare("DELETE FROM $tabela
+                WHERE cod = ?");
+
+    $query->bindParam(1,$codigo);
+    $query->execute();
+    $retorno = $query->execute();
+    if ($retorno) {
+        return 1;
+    }else{
+        return 0;
+    }   
+}
+
+function editarInfo($tabela,$codigo,$status,$data){
+    $conexao = conecta_bd();
+
+    $query = $conexao->prepare("SELECT * FROM $tabela WHERE cod = ?");
+    $query->bindParam(1,$codigo);
+    $query->execute();
+    $retorno = $query->fetch(PDO::FETCH_ASSOC);
+
+    if(count($retorno) > 0){
+        $query = $conexao->prepare("UPDATE $tabela SET status = ?, data = ? WHERE cod = ?");
+        $query->bindParam(1, $status);
+        $query->bindParam(2, $data);
+        $query->bindParam(3, $codigo);
+        $retorno = $query->execute();//retorno boolean padrao TRUE
+        if($retorno){
+            return 1;
+        } else{
+            return 0;
+        }      
+    }
+}
 ?>
