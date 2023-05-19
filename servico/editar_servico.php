@@ -4,11 +4,12 @@ require_once('../valida_session/valida_session.php');
 require_once('../layout/header.php'); 
 require_once('../layout/sidebar.php');  
 require_once ("../bd/bd_servico.php");
+require_once ("../bd/bd_generico.php");
 
 $codigo = $_GET['cod'];
-$dados = buscaServicoeditar($codigo);
+$tabela = 'servico';
+$dados = buscaDadoseditarPerfil($tabela,$codigo);
 $nome = $dados["nome"];
-$valor = $dados["valor"];
 ?>
 
 <!-- Main Content -->
@@ -35,10 +36,6 @@ $valor = $dados["valor"];
                             <label> Nome do Serviço </label>
                             <input type="text" class="form-control form-control-user" id="nome" name="nome" value="<?= $nome ?>">
                         </div>
-                        <div class="col-sm-6">
-                            <label> Valor </label>
-                            <input type="text" class="form-control form-control-user" id="valor" name="valor" value="<?= $valor ?>">
-                        </div>
                     </div>                    
 
                     <div class="card-footer text-muted" id="btn-form">
@@ -59,5 +56,3 @@ $valor = $dados["valor"];
 <?php
 require_once('../layout/footer.php');
 ?>
-
-
