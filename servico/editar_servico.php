@@ -1,14 +1,14 @@
-
 <?php
 require_once('../valida_session/valida_session.php');
 require_once('../layout/header.php'); 
 require_once('../layout/sidebar.php');  
 require_once ("../bd/bd_servico.php");
+require_once ("../bd/bd_generico.php");
 
 $codigo = $_GET['cod'];
-$dados = buscaServicoeditar($codigo);
+$tabela = 'servicos';
+$dados = buscaDadoseditar($tabela,$codigo);
 $nome = $dados["nome"];
-$valor = $dados["valor"];
 ?>
 
 <!-- Main Content -->
@@ -23,7 +23,7 @@ $valor = $dados["valor"];
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-8">
-                        <h6 class="m-0 font-weight-bold text-primary" id="title">ATUALIZAR DADOS DO SERVIÇO</h6>
+                        <h6 class="m-0 font-weight-bold text-success" id="title">ATUALIZAR DADOS DO SERVIÇO</h6>
                     </div>
                 </div>
             </div>
@@ -34,10 +34,6 @@ $valor = $dados["valor"];
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label> Nome do Serviço </label>
                             <input type="text" class="form-control form-control-user" id="nome" name="nome" value="<?= $nome ?>">
-                        </div>
-                        <div class="col-sm-6">
-                            <label> Valor </label>
-                            <input type="text" class="form-control form-control-user" id="valor" name="valor" value="<?= $valor ?>">
                         </div>
                     </div>                    
 
@@ -59,5 +55,3 @@ $valor = $dados["valor"];
 <?php
 require_once('../layout/footer.php');
 ?>
-
-

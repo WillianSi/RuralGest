@@ -18,29 +18,42 @@ function checaLogin($tabela,$email,$senha){
     return $retorno;
 }
 
-function consultaStatusClienteTercerizado($tabela,$cod_usuario,$status){
-    $conexao = conecta_bd();
-    $query = $conexao->prepare("SELECT count(*) AS total
-                FROM $tabela
-                WHERE cod_cliente = ? AND status = ?");
-
-    $query->bindParam(1,$cod_usuario);
-    $query->bindParam(2,$status);
-    $query->execute();
-    $total = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    return $total;
-}
-
 function listaDados($tabela){
-    $conexao = conecta_bd();
-    $query = $conexao->prepare("SELECT * FROM $tabela
-                ORDER BY nome");
+  $conexao = conecta_bd();
+  $query = $conexao->prepare("SELECT * FROM $tabela
+              ORDER BY nome");
 
-    $query->execute();
-    $lista = $query->fetchAll(PDO::FETCH_ASSOC);
+  $query->execute();
+  $lista = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    return $lista;
+  return $lista;
 }
 
+function buscaDadoseditar($tabela,$codigo){
+  $conexao = conecta_bd();
+  $query = $conexao->prepare("SELECT * FROM $tabela
+              WHERE cod = ?");
+
+  $query->bindParam(1,$codigo);
+  $query->execute();
+  $lista = $query->fetch(PDO::FETCH_ASSOC);
+
+  return $lista;
+}
+
+function removeDados($tabela,$codigo){
+  $conexao = conecta_bd();
+
+  $query = $conexao->prepare("DELETE FROM $tabela
+              WHERE cod = ?");
+
+  $query->bindParam(1,$codigo);
+  $query->execute();
+  $retorno = $query->execute();
+  if ($retorno) {
+      return 1;
+  }else{
+      return 0;
+  }   
+}
 ?>

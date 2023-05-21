@@ -9,23 +9,13 @@ else{
 
 	$email = $_POST["email"];
 	$senha = $_POST["senha"];
-	$perfil = 1;
 
-	if ($perfil == 1) {
-		$tabela= "usuario";
-		$dados = checaLogin($tabela,$email,$senha);
-	}elseif($perfil == 2){
-		$tabela= "cliente";
-		$dados = checaLogin($tabela,$email,$senha);
-	}
+	$tabela= "usuario";
+	$dados = checaLogin($tabela,$email,$senha);
 
 	if($dados == "") {
-		$_SESSION['texto_erro_login'] = 'Email, Senha ou Perfil Inválido!';
+		$_SESSION['texto_erro_login'] = 'Email ou Senha Inválido!';
 	    header("Location:../index.php");
-	}
-	elseif($dados['status'] != 1){
-		$_SESSION['texto_erro_login'] = 'Acesso bloqueado ao sistema!';
-	    header("Location:../index.php");	
 	}
 	else {
 	    // Salva os dados encontrados na sessão
@@ -37,6 +27,3 @@ else{
 	}
 	die();
 }
-
-
-?>

@@ -43,7 +43,7 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Tabela Financeira</span></a>
 
-        <a class="nav-link" href="../ordem/ordem.php">
+        <a class="nav-link" href="../tempo/tempo.php">
             <i class="fas fa-fw fa-sun"></i>
             <span>Tempo</span></a>
 

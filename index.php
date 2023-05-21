@@ -52,49 +52,64 @@ session_start();
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">RuralGest</h1>
                                     </div>
-                                    <?php
-                                    if (isset($_SESSION['texto_erro_login'])) :
-                                    ?>
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?= $_SESSION['texto_erro_login'] ?></strong>
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    <?php
-                                        unset($_SESSION['texto_erro_login']);
-                                    endif;
-                                    ?>
-
-                                    <form class="user" action="valida_login/valida_login.php" method="post">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Insira o endereço de e-mail..." required>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="senha" name="senha" placeholder="Senha" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Lembreme
-                                                    Me</label>
+                                    <div class="card-body">
+                                        <?php
+                                        if (isset($_SESSION['texto_erro_login'])) :
+                                        ?>
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?= $_SESSION['texto_erro_login'] ?></strong>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-success btn-user btn-block">
-                                            Acessar
-                                        </button>
+                                        <?php
+                                            unset($_SESSION['texto_erro_login']);
+                                        endif;
+                                        ?>
+                                        <?php
+                                        if (isset($_SESSION['texto_sucesso'])) :
+                                        ?>
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                <strong><i class="fas fa-check"></i>&nbsp;&nbsp;<?= $_SESSION['texto_sucesso'] ?></strong>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        <?php
+                                            unset($_SESSION['texto_sucesso']);
+                                        endif;
+                                        ?>
+
+                                        <form class="user" action="valida_login/valida_login.php" method="post">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Insira o endereço de e-mail..." required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control form-control-user" id="senha" name="senha" placeholder="Senha" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox small">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                    <label class="custom-control-label" for="customCheck">Lembreme
+                                                        Me</label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success btn-user btn-block">
+                                                Acessar
+                                            </button>
+                                            <hr>
+                                        </form>
                                         <hr>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="./senha/recuperar_senha.php">Esqueceu sua senha?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="./senha/criar_conta.php">Criar conta aqui!</a>
-                                    </div>
+                                        <div class="text-center">
+                                            <a class="small" href="./senha/recuperar_senha.php">Esqueceu sua senha?</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="small" href="./senha/criar_conta.php">Criar conta aqui!</a>
+                                        </div>
 
-                                    <div class="text-center">
+                                        <div class="text-center">
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
