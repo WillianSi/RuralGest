@@ -4,65 +4,60 @@ require_once('../layout/header.php');
 require_once('../layout/sidebar.php');
 ?>
 
-<!-- Main Content -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" 
+integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="css/styles.css" />
+<script src="js/scripts.js" defer></script>
+
 <div id="content">
+  <?php require_once('../layout/navbar.php'); ?>
 
-	<?php require_once('../layout/navbar.php'); ?>
+  <div class="container">
+    <div class="form">
+      <h3>Confira o clima:</h3>
+      <div class="form-input-container">
+        <input type="text" placeholder="Digite o nome da cidade" id="city-input" />
+        <button id="search">
+          <i class="fas fa-search fa-sm"></i>
+        </button>
+      </div>
+    </div>
 
-	<!-- Begin Page Content -->
-	<div class="container-fluid">
-		<div class="card shadow mb-2">
-			<div class="card-header py-3">
-				<div class="row">
-					<div class="col-md-8">
-						<h6 class="m-0 font-weight-bold text-success" id="title">PREVISÃO DO TEMPO</h6>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<form method="GET" action="" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-		<div class="input-group">
-			<input type="text" name="city" id="city" class="form-control small" placeholder="Digite a cidade">
-			<div class="input-group-append">
-				<button class="btn btn-success" type="submit">
-					<i class="fas fa-fw fa-sun">&nbsp;</i>Previsão
-				</button>
-			</div>
-		</div>
-	</form>
-	<!-- /.container-fluid -->
-
-	<?php
-	if (isset($_GET['city'])) {
-		$city = $_GET['city'];
-		$apiKey = 'YOUR_API_KEY'; // Insira sua chave de API do OpenWeatherMap aqui
-
-		$apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=$city&appid=$apiKey&units=metric";
-		$response = file_get_contents($apiUrl);
-
-		if ($response) {
-			$data = json_decode($response, true);
-
-			if ($data && $data['cod'] === 200) {
-				$weatherDescription = $data['weather'][0]['description'];
-				$temperature = $data['main']['temp'];
-				$humidity = $data['main']['humidity'];
-
-				echo "<h2>Tempo em $city:</h2>";
-				echo "<p>Descrição: $weatherDescription</p>";
-				echo "<p>Temperatura: $temperature °C</p>";
-				echo "<p>Humidade: $humidity%</p>";
-			} else {
-				echo "Erro: não foi possível buscar dados meteorológicos.";
-			}
-		} else {
-			echo "Erro: não foi possível conectar-se à API do clima.";
-		}
-	}
-	?>
+    <div id="weather-data" class="hide">
+      <h2><i class="fa-solid fa-location-dot"></i> <span id="city"></span> <img id="country"></img></h2>
+      <p id="temperature"><span></span>&deg;C</p>
+      <div id="description-container">
+        <p id="description"></p>
+        <img id="weather-icon" src="" alt="Condições atuais">
+      </div>
+      <div id="details-container">
+        <p id="umidity">
+          <i class="fa-solid fa-droplet"></i>
+          <span></span>
+        </p>
+        <p id="wind">
+          <i class="fa-solid fa-wind"></i>
+          <span></span>
+        </p>
+      </div>
+    </div>
+    
+    <div id="error-message" class="hide">
+      <p>Não foi possível encontrar o clima de uma cidade com este nome.</p>
+    </div>
+    <div id="loader" class="hide">
+      <i class="fa-solid fa-spinner"></i>
+    </div>
+    <div id="suggestions">
+      <button id="machado">Machado</button>
+      <button id="carvalhópolis">Carvalhópolis</button>
+      <button id="turvolândia">Turvolândia</button>
+      <button id="poço_fundo">Poço Fundo</button>
+    </div>
+  </div>
 </div>
+
 <!-- End of Main Content -->
 <?php
 require_once('../layout/footer.php');
