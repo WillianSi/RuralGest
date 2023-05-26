@@ -55,23 +55,43 @@ require_once('../layout/sidebar.php');
                 endif;
                 ?>
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th style="display:none" ;>cod</th>
-                                <th class="text-center">Servico</th>
-                                <th class="text-center">Tipo</th>
-                                <th class="text-center">Preço</th>
-                                <th class="text-center">Data do Serviço</th>
-                                <th class="text-center">Descrição</th>
-                                <th class="text-center">Nota fiscal</th>
-                                <th class="text-center" data-orderable="false">Atualizar</th>
-                                <th class="text-center" data-orderable="false">Excluir</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th style="display:none" ;>cod</th>
+                <th class="text-center">Serviço</th>
+                <th class="text-center">Tipo</th>
+                <th class="text-center">Preço</th>
+                <th class="text-center">Data do Serviço</th>
+                <th class="text-center">Descrição</th>
+                <th class="text-center">Nota fiscal</th>
+                <th class="text-center" data-orderable="false">Atualizar</th>
+                <th class="text-center" data-orderable="false">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            require_once("../bd/bd_ordem.php"); // Inclua o arquivo que contém a função buscarOrdens()
 
+            $ordens = buscaOrdens(); // Obtém os dados das ordens do banco de dados
+
+            foreach ($ordens as $ordem) {
+                echo "<tr>";
+                echo "<td style='display:none'>" . $ordem['cod'] . "</td>";
+                echo "<td class='text-center'>" . $ordem['cod_servico'] . "</td>";
+                echo "<td class='text-center'>" . $ordem['tipo'] . "</td>";
+                echo "<td class='text-center'>" . $ordem['preco'] . "</td>";
+                echo "<td class='text-center'>" . $ordem['data_servico'] . "</td>";
+                echo "<td class='text-center'>" . $ordem['descricao'] . "</td>";
+                echo "<td class='text-center'>" . $ordem['nota_fiscal'] . "</td>";
+                echo "<td class='text-center'><a href='atualizar_ordem.php?cod=" . $ordem['cod'] . "'><i class='fas fa-fw fa-edit'></i></a></td>";
+                echo "<td class='text-center'><a href='excluir_ordem.php?cod=" . $ordem['cod'] . "'><i class='fas fa-fw fa-trash'></i></a></td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
             </div>
 
         </div>

@@ -3,18 +3,18 @@ require_once("../valida_session/valida_session.php");
 require_once ("../bd/bd_ordem.php");
 	     
 $codigo = $_POST["cod"];
-$cod_terceirizado = $_POST["cod_terceirizado"];
-$data_servico = $_POST["data_servico"];
-$status = $_POST["status"];
-$data=date("y/m/d");
+$preco = $_POST['preco'];
+$data_servico = $_POST['data_servico'];
+$descricao = $_POST['descricao'];
+$nota_fiscal = $_POST['nota_fiscal'];
 
-$dados = editarOrdem($codigo,$cod_terceirizado,$data_servico,$status,$data);
+$dados = editarOrdem($codigo,$preco,$data_servico,$descricao,$nota_fiscal);
 if ($dados == 1){
-	$_SESSION['texto_sucesso'] = 'Os dados da ordem de serviço foram alterados no sistema.';
-	header ("Location:ordem.php");
+	$_SESSION['texto_sucesso'] = 'Os dados de gastos foram alterados no sistema.';
+	header ("Location:cad_ordem.php");
 }else{
-	$_SESSION['texto_erro'] = 'Os dados da ordem de serviço não foram alterados no sistema!';
-	header ("Location:ordem.php");
+	$_SESSION['texto_erro'] = 'Os dados de gastos não foram alterados no sistema!';
+	header ("Location:cad_ordem.php");
 }
 
 		
