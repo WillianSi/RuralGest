@@ -12,10 +12,9 @@ if (isset($dados['nota'])) {
     $nota_fiscal = '15'; // Valor padrão para nota_fiscal, caso não seja fornecido
 }
 
-
 require_once("../bd/bd_ordem.php");
 
-$resultado = cadastraOrdem($cod_servico, $tipo, $preco, $data_servico, $descricao, $nota_fiscal);
+$resultado = cadastraOrdem($tipo, $preco, $data_servico, $descricao, $nota_fiscal, $cod_servico);
 
 if ($resultado == 1) {
     $_SESSION['texto_sucesso'] = 'Ordem de serviço aberta com sucesso.';

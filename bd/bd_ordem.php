@@ -1,20 +1,22 @@
-<?php 
+<?php
 
 require_once("conecta_bd.php");
 
-function consultaStatusUsuario($status){
+function consultaStatusUsuario($status)
+{
     $conexao = conecta_bd();
     $query = $conexao->prepare("SELECT count(*) AS total
                 FROM financas WHERE status = ?");
 
-    $query->bindParam(1,$status);
+    $query->bindParam(1, $status);
     $query->execute();
     $total = $query->fetchAll(PDO::FETCH_ASSOC);
 
     return $total;
 }
 
-function listaOrdem(){
+function listaOrdem()
+{
     $conexao = conecta_bd();
     $query = $conexao->prepare("SELECT
                                     o.cod AS cod,
@@ -33,28 +35,26 @@ function listaOrdem(){
     return $lista;
 }
 
-function cadastraOrdem($cod_servico, $tipo, $preco, $data_servico, $descricao, $nota_fiscal)
+function cadastraOrdem($tipo, $preco, $data_servico, $descricao, $nota_fiscal, $cod_servico)
 {
     $conexao = conecta_bd();
 
-    
-        $query = $conexao->prepare("INSERT INTO financas (cod_servico, tipo, preco, data_servico, descricao, nota_fiscal)
+    $query = $conexao->prepare("INSERT INTO financas (tipo, preco, data_servico, descricao, nota_fiscal, cod_servico)
                                     VALUES (?, ?, ?, ?, ?, ?)");
 
-        $query->bindParam(1, $cod_servico);
-        $query->bindParam(2, $tipo);
-        $query->bindParam(3, $preco);
-        $query->bindParam(4, $data_servico);
-        $query->bindParam(5, $descricao);
-        $query->bindParam(6, $nota_fiscal);
+    $query->bindParam(1, $tipo);
+    $query->bindParam(2, $preco);
+    $query->bindParam(3, $data_servico);
+    $query->bindParam(4, $descricao);
+    $query->bindParam(5, $nota_fiscal);
+    $query->bindParam(6, $cod_servico);
 
-        $retorno = $query->execute();
-        if ($retorno) {
-            return 1;
-        } else {
-            return 0;
-        }
-    
+    $retorno = $query->execute();
+    if ($retorno) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 
@@ -106,7 +106,8 @@ function buscaOrdens()
     return $dados_ordem;
 }
 
-function buscaOrdemeditar($codigo){
+function buscaOrdemeditar($codigo)
+{
     $conexao = conecta_bd();
     $query = $conexao->prepare("SELECT 
                                    f.cod AS cod,
@@ -123,15 +124,16 @@ function buscaOrdemeditar($codigo){
 }
 
 
-function editarOrdem($codigo,$preco,$data_servico,$descricao,$nota_fiscal){
+function editarOrdem($codigo, $preco, $data_servico, $descricao, $nota_fiscal)
+{
     $conexao = conecta_bd();
 
     $query = $conexao->prepare("SELECT * FROM financas WHERE cod = ?");
-    $query->bindParam(1,$codigo);
+    $query->bindParam(1, $codigo);
     $query->execute();
     $retorno = $query->fetch(PDO::FETCH_ASSOC);
 
-    if(count($retorno) > 0){
+    if (count($retorno) > 0) {
         $query = $conexao->prepare("UPDATE financas SET preco = ?, data_servico = ?, descricao = ?, nota_fiscal = ? WHERE cod = ?");
         $query->bindParam(1, $preco);
         $query->bindParam(2, $data_servico);
@@ -139,13 +141,11 @@ function editarOrdem($codigo,$preco,$data_servico,$descricao,$nota_fiscal){
         $query->bindParam(4, $nota_fiscal);
         $query->bindParam(5, $codigo);
 
-        $retorno = $query->execute();//retorno boolean padrao TRUE
-        if($retorno){
+        $retorno = $query->execute(); //retorno boolean padrao TRUE
+        if ($retorno) {
             return 1;
-        } else{
+        } else {
             return 0;
-        }      
+        }
     }
 }
-
-?>

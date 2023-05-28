@@ -2,8 +2,11 @@
 require_once('../valida_session/valida_session.php');
 require_once('../layout/header.php');
 require_once('../layout/sidebar.php');
-require_once("../bd/bd_servico.php");
+require_once("../bd/bd_generico.php");
 require_once("../bd/bd_ordem.php");
+
+$tabela = "servicos";
+$servicos = listaDados($tabela);
 ?>
 
 <!-- Main Content -->
@@ -49,17 +52,19 @@ require_once("../bd/bd_ordem.php");
                     unset($_SESSION['texto_sucesso']);
                 endif;
                 ?>
-
-            
                   
                 <form class="user" action="cad_ordem_envia.php" method="post" enctype="multipart/form-data">
                     <div class="row">
+
                         <div class="col-md-6">
-                            <div class="form-group">
                             <label> Servico </label>
-                            <input type="text" class="form-control form-control-user2" id="cod_servico" name="cod_servico" value="<?php if (!empty($_SESSION['servico'])) { echo $_SESSION['servico'];} ?>" placeholder="servico" required>
-                            </div>
+                            <select class="form-control" id="cod_servico" name="cod_servico">
+                                <?php foreach($servicos as $dados):?>
+                                <option value="<?=$dados['cod']?>"><?=$dados['nome']?></option> 
+                                <?php endforeach ?>
+                            </select>
                         </div>
+                        
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="preco">Preço:</label>
@@ -70,13 +75,13 @@ require_once("../bd/bd_ordem.php");
                             <div class="form-group">
                                 <label for="tipo">Tipo:</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="despesa" value="Despesa" checked>
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="0" checked>
                                     <label class="form-check-label" for="despesa">
                                         Despesa
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="receita" value="Receita" checked>
+                                    <input class="form-check-input" type="radio" name="tipo" id="tipo" value="1" checked>
                                     <label class="form-check-label" for="receita">
                                         Receita
                                     </label>
