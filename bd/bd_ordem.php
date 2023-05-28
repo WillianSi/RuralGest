@@ -46,7 +46,7 @@ function cadastraOrdem($tipo, $preco, $data_servico, $descricao, $nota_fiscal, $
     $query->bindParam(2, $preco);
     $query->bindParam(3, $data_servico);
     $query->bindParam(4, $descricao);
-    $query->bindParam(5, $nota_fiscal);
+    $query->bindParam(5, $nota_fiscal, PDO::PARAM_LOB); // Define o parâmetro como LOB (Large Object)
     $query->bindParam(6, $cod_servico);
 
     $retorno = $query->execute();
@@ -147,5 +147,21 @@ function editarOrdem($codigo, $preco, $data_servico, $descricao, $nota_fiscal)
         } else {
             return 0;
         }
+    }
+}
+
+function buscarNotaFiscal($cod) {
+    $conexao = conecta_bd();
+
+    $query = $conexao->prepare("SELECT nota_fiscal FROM financas WHERE cod = ?");
+    $query->bindParam(1, $cod);
+    $query->execute();
+
+    $notaFiscal = $query->fetch(PDO::FETCH_ASSOC);
+
+    if ($notaFiscal !== false) {
+        return $notaFiscal;
+    } else {
+        return false;
     }
 }

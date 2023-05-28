@@ -58,7 +58,6 @@ require_once('../layout/sidebar.php');
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th style="display:none" ;>cod</th>
                 <th class="text-center">Serviço</th>
                 <th class="text-center">Tipo</th>
                 <th class="text-center">Preço</th>
@@ -77,13 +76,11 @@ require_once('../layout/sidebar.php');
 
             foreach ($ordens as $ordem) {
                 echo "<tr>";
-                echo "<td style='display:none'>" . $ordem['cod'] . "</td>";
                 echo "<td class='text-center'>" . $ordem['cod_servico'] . "</td>";
                 echo "<td class='text-center'>" . $ordem['tipo'] . "</td>";
                 echo "<td class='text-center'>" . $ordem['preco'] . "</td>";
                 echo "<td class='text-center'>" . $ordem['data_servico'] . "</td>";
                 echo "<td class='text-center'>" . $ordem['descricao'] . "</td>";
-                echo "<td class='text-center'>" . $ordem['nota_fiscal'] . "</td>";
                 echo "<td class='text-center'><a href='atualizar_ordem.php?cod=" . $ordem['cod'] . "'><i class='fas fa-fw fa-edit'></i></a></td>";
                 echo "<td class='text-center'><a href='excluir_ordem.php?cod=" . $ordem['cod'] . "'><i class='fas fa-fw fa-trash'></i></a></td>";
                 echo "</tr>";

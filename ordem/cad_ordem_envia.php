@@ -6,11 +6,13 @@ $tipo = $_POST['tipo'];
 $preco = $_POST['preco'];
 $data_servico = $_POST['data_servico'];
 $descricao = $_POST['descricao'];
-if (isset($dados['nota'])) {
-    $nota_fiscal = $dados['nota'];
-} else {
-    $nota_fiscal = '15'; // Valor padrão para nota_fiscal, caso não seja fornecido
-}
+
+// Verifique se um arquivo foi enviado
+if (!empty($_FILES['nota']['tmp_name'])) {
+    $nota_fiscal = file_get_contents($_FILES['nota']['tmp_name']);
+  } else {
+    $nota_fiscal = null; // Define como null caso nenhum arquivo tenha sido enviado
+  }
 
 require_once("../bd/bd_ordem.php");
 

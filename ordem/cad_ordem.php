@@ -53,7 +53,7 @@ $servicos = listaDados($tabela);
                 endif;
                 ?>
                   
-                <form class="user" action="cad_ordem_envia.php" method="post" enctype="multipart/form-data">
+                <form enctype="multipart/form-data" class="user" action="cad_ordem_envia.php" method="post" enctype="multipart/form-data">
                     <div class="row">
 
                         <div class="col-md-6">
@@ -101,7 +101,7 @@ $servicos = listaDados($tabela);
                     </div>
                     <div class="form-group">
                         <label for="nota_fiscal">Nota fiscal (opcional):</label><br>
-                        <input class="form-control-user2" type="file" id="formFile" accept=".pdf,.jpg,.jpeg" name="nota" value="<?php if (!empty($_SESSION['nota_fiscal'])) { echo $_SESSION['nota_fiscal'];} ?>" placeholder="50.00" required>
+                        <input class="form-control-user2" type="file" id="nota" accept=".pdf,.jpg,.jpeg" name="nota" value="<?php if (!empty($_SESSION['nota_fiscal'])) { echo $_SESSION['nota_fiscal'];} ?>" placeholder="50.00" required>
                     </div>
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
@@ -188,7 +188,13 @@ $servicos = listaDados($tabela);
                                 echo "<td class='text-center'>" . $ordem['preco'] . "</td>";
                                 echo "<td class='text-center'>" . $ordem['data_servico'] . "</td>";
                                 echo "<td class='text-center'>" . $ordem['descricao'] . "</td>";
-                                echo "<td class='text-center'>" . $ordem['nota_fiscal'] . "</td>";
+                                echo "<td class='text-center'>";
+                                if (!empty($ordem['nota_fiscal'])) {
+                                  // Verifica se há um arquivo salvo
+                                  echo "<a href='mostrar_nota.php?cod=" . $ordem['cod'] . "'>Visualizar</a>";
+                                } else {
+                                  echo "N/A";
+                                }
                                 echo "<td class='text-center'><a href='editar_ordem.php?cod=" . $ordem['cod'] . "'><i class='fas fa-fw fa-edit'></i></a></td>";
                                 echo "<td class='text-center'><a href='remove_ordem.php?cod=" . $ordem['cod'] . "'><i class='fas fa-fw fa-trash'></i></a></td>";
                                 echo "</tr>";
