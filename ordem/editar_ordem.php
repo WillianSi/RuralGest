@@ -18,7 +18,7 @@ $tipo = $dados['tipo'];
 $preco = $dados['preco'];
 $data_servico = $dados['data_servico'];
 $descricao = $dados['descricao'];
-$nota_fiscal = $dados['nota_fiscal'];
+$nota_fiscal = base64_encode($dados['nota_fiscal']);
 
 ?>
 
@@ -88,9 +88,22 @@ $nota_fiscal = $dados['nota_fiscal'];
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-6 mb-3 mb-sm-0">
-                        <label> Tipo </label>
-                        <input type="text" class="form-control form-control" id="tipo" name="tipo" value="<?= $tipo ?>" readonly>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tipo">Tipo:</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo" id="despesa" value="0" <?php echo ($tipo == 1) ? 'checked' : ''; ?>>
+                                <label class="form-check-label" for="despesa">
+                                    Despesa
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipo" id="receita" value="1" <?php echo ($tipo == 0) ? 'checked' : ''; ?>>
+                                <label class="form-check-label" for="receita">
+                                    Receita
+                                </label>
+                            </div>
+                        </div>
                         </div>
                         <div class="col-md-6">
                             <label> Data do Serviço </label>
@@ -106,11 +119,15 @@ $nota_fiscal = $dados['nota_fiscal'];
                     </div>
 
                     <div class="form-group row">
-                             <div class="col-md-6">
-                             <label for="nota_fiscal">Nota fiscal (Opcional):</label><br>
-                        <input class="form-control-user2" type="file" id="formFile" accept=".pdf,.jpg,.jpeg" name="nota" value="<?= $nota_fiscal ?>" required>
-                            </div>                   
+                    <div class="col-md-6">
+                        <label for="nota_fiscal">Nota fiscal (Opcional)</label><br>
+                        <?php if (!empty($nota_fiscal)) : ?>
+                            <a href="mostrar_nota.php?cod=<?= $cod ?>" class="btn btn-success">Visualizar</a>
+                        <?php endif; ?>
+                        <input class="form-control-user2" type="file" id="formFile" accept=".pdf,.jpg,.jpeg" name="nota" required>
                     </div>
+                    </div>                
+
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
                             <a title="Voltar" href="cad_ordem.php"><button type="button" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i>&nbsp;</i>Voltar</button></a>

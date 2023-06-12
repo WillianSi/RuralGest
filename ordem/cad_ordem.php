@@ -99,9 +99,10 @@ $servicos = listaDados($tabela);
                     </div>
                     <div class="form-group">
                         <label>Descrição (Opcional):</label>
-                        <textarea class="form-control form-control-user2" id="descricao" name="descricao" placeholder="Descrição da receita ou despesa" rows="4"><?php if (!empty($_SESSION['descricao'])) {
-                                                                                                                                                                        echo $_SESSION['descricao'];
-                                                                                                                                                                    } ?></textarea>
+                        <textarea class="form-control form-control-user2" id="descricao" name="descricao" 
+                        placeholder="Descrição da receita ou despesa" rows="4"><?php if (!empty($_SESSION['descricao'])) {
+                        echo $_SESSION['descricao'];
+                        } ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="nota_fiscal">Nota fiscal (opcional):</label><br>
