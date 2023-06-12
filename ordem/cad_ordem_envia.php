@@ -11,7 +11,7 @@ $descricao = $_POST['descricao'];
 if (!empty($_FILES['nota']['tmp_name'])) {
     $nota_fiscal = file_get_contents($_FILES['nota']['tmp_name']);
   } else {
-    $nota_fiscal = null; // Define como null caso nenhum arquivo tenha sido enviado
+    $nota_fiscal = 0; // Define como null caso nenhum arquivo tenha sido enviado
   }
 
 require_once("../bd/bd_ordem.php");

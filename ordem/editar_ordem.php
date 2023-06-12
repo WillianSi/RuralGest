@@ -3,14 +3,18 @@
 require_once('../valida_session/valida_session.php');
 require_once('../layout/header.php'); 
 require_once('../layout/sidebar.php');
-require_once ("../bd/bd_ordem.php");
+require_once ("../bd/bd_generico.php");
 
 $codigo = $_GET['cod'];
-$dados = buscaOrdemeditar($codigo);
+$tabela = 'financas';
+$dados = buscaDadoseditar($tabela,$codigo);
+
+$tabela = "servicos";
+$servicos = listaDados($tabela);
 
 $cod = $dados["cod"];
-//$cod_servico = $dados['cod_servico'];
-//$tipo = $dados['tipo'];
+$cod_servico = $dados['cod_servico'];
+$tipo = $dados['tipo'];
 $preco = $dados['preco'];
 $data_servico = $dados['data_servico'];
 $descricao = $dados['descricao'];
@@ -40,8 +44,14 @@ $nota_fiscal = $dados['nota_fiscal'];
                     <input type="hidden" name="cod" value="<?=$cod?>">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <label> Serviço </label>
-                            <input type="text" class="form-control form-control-user" id="cod_servico" name="cod_servico" value="<?= $servico ?>" readonly>
+                        <label> Serviço </label>
+                        <select class="form-control" id="cod_servico" name="cod_servico">
+                            <?php foreach ($servicos as $dados) : ?>
+                                <option value="<?= $dados['cod'] ?>" <?= ($dados['cod'] == $cod_servico) ? 'selected' : '' ?>>
+                                    <?= $dados['nome'] ?>
+                                </option>
+                            <?php endforeach ?>
+                        </select>
                         </div>
                         <div class="col-sm-6">
                             <label> Tipo </label>
