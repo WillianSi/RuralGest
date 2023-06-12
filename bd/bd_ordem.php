@@ -111,11 +111,14 @@ function buscaOrdemeditar($codigo)
     $conexao = conecta_bd();
     $query = $conexao->prepare("SELECT 
                                    f.cod AS cod,
+                                   f.cod_servico AS cod_servico,
+                                   s.nome AS nome,
+                                   f.tipo AS tipo,
                                    f.preco AS preco,
                                    f.data_servico AS data_servico,
                                    f.descricao AS descricao,
                                    f.nota_fiscal AS nota_fiscal
-                               FROM financas f 
+                               FROM financas f, servicos s
                                WHERE f.cod = :codigo");
     $query->bindParam(":codigo", $codigo);
     $query->execute();
