@@ -92,13 +92,13 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                             <div class="form-group">
                                 <label for="tipo">Tipo:</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="despesa" value="0" <?php echo ($tipo == 1) ? 'checked' : ''; ?>>
+                                    <input class="form-check-input" type="radio" name="tipo" id="despesa" value="1" <?php echo ($tipo == 1) ? 'checked' : ''; ?>>
                                     <label class="form-check-label" for="despesa">
                                         Despesa
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipo" id="receita" value="1" <?php echo ($tipo == 0) ? 'checked' : ''; ?>>
+                                    <input class="form-check-input" type="radio" name="tipo" id="receita" value="0" <?php echo ($tipo == 0) ? 'checked' : ''; ?>>
                                     <label class="form-check-label" for="receita">
                                         Receita
                                     </label>

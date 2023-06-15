@@ -18,7 +18,5 @@ if ($dados == 1){
 }else{
 	$_SESSION['texto_erro'] = 'Os dados de gastos não foram alterados no sistema!';
 	header ("Location:cad_ordem.php");
-}
-
-		
+}	
 ?>
