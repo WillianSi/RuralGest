@@ -70,11 +70,9 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                 <form class="user" action="editar_ordem_envia.php" method="post">
                     <input type="hidden" name="cod" value="<?= $cod ?>">
                     <div class="form-group row">
-
-                        <div class="col-md-6">
-                            <label>Serviço</label>
-                            <select class="form-control" id="cod_servico" name="cod_servico" required>
-                                <option value="">Selecione um serviço</option>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <label> Serviço </label>
+                            <select class="form-control" id="cod_servico" name="cod_servico">
                                 <?php foreach ($servicos as $dados) : ?>
                                     <option value="<?= $dados['cod'] ?>" <?= ($dados['cod'] == $cod_servico) ? 'selected' : '' ?>>
                                         <?= $dados['nome'] ?>

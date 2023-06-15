@@ -68,9 +68,7 @@ $servicos = listaDados($tabela);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="preco">Preço:</label>
-                                <input type="text" class="form-control form-control-user2" id="preco" name="preco" value="<?php if (!empty($_SESSION['preco'])) {
-                                                                                                                                echo $_SESSION['preco'];
-                                                                                                                            } ?>" placeholder="50.00" required>
+                                <input type="text" class="form-control form-control-user2" id="preco" name="preco" value="<?php if (!empty($_SESSION['preco'])) {echo $_SESSION['preco'];} ?>" placeholder="50.00" required>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -120,7 +118,6 @@ $servicos = listaDados($tabela);
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
 </div>
 
 
