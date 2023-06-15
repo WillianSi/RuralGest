@@ -57,43 +57,6 @@ function cadastraOrdem($tipo, $preco, $data_servico, $descricao, $nota_fiscal, $
     }
 }
 
-
-
-function buscaOrdemadd($cod_servico, $tipo, $preco, $data_servico, $descricao, $nota_fiscal)
-{
-    $conexao = conecta_bd();
-
-    $query = $conexao->prepare("SELECT 
-                                    data_servico,
-                                    descricao,
-                                    nota_fiscal
-                                FROM 
-                                    financas
-                                WHERE 
-                                    cod_servico = ? AND
-                                    tipo = ? AND
-                                    preco = ? AND
-                                    data_servico = ? AND
-                                    descricao = ? AND
-                                    nota_fiscal = ?
-                                ORDER BY cod DESC
-                                LIMIT 1");
-
-    $query->bindParam(1, $cod_servico);
-    $query->bindParam(2, $tipo);
-    $query->bindParam(3, $preco);
-    $query->bindParam(4, $data_servico);
-    $query->bindParam(5, $descricao);
-    $query->bindParam(6, $nota_fiscal);
-
-    $query->execute();
-
-    $lista = $query->fetch(PDO::FETCH_ASSOC);
-    return $lista;
-}
-
-
-
 function buscaOrdens()
 {
     $conexao = conecta_bd();
@@ -127,7 +90,7 @@ function buscaOrdemeditar($codigo)
 }
 
 
-function editarOrdem($codigo, $preco, $data_servico, $descricao, $nota_fiscal)
+function editarOrdem($codigo,$tipo, $preco, $data_servico, $descricao, $nota_fiscal, $cod_servico)
 {
     $conexao = conecta_bd();
 
@@ -137,12 +100,15 @@ function editarOrdem($codigo, $preco, $data_servico, $descricao, $nota_fiscal)
     $retorno = $query->fetch(PDO::FETCH_ASSOC);
 
     if (count($retorno) > 0) {
-        $query = $conexao->prepare("UPDATE financas SET preco = ?, data_servico = ?, descricao = ?, nota_fiscal = ? WHERE cod = ?");
-        $query->bindParam(1, $preco);
-        $query->bindParam(2, $data_servico);
-        $query->bindParam(3, $descricao);
-        $query->bindParam(4, $nota_fiscal);
-        $query->bindParam(5, $codigo);
+
+        $query = $conexao->prepare("UPDATE financas SET tipo = ?, preco = ?, data_servico = ?, descricao = ?, nota_fiscal = ?, cod_servico = ? WHERE cod = ?");
+        $query->bindParam(1, $tipo);
+        $query->bindParam(2, $preco);
+        $query->bindParam(3, $data_servico);
+        $query->bindParam(4, $descricao);
+        $query->bindParam(5, $nota_fiscal);
+        $query->bindParam(6, $cod_servico);
+        $query->bindParam(7, $codigo);
 
         $retorno = $query->execute(); //retorno boolean padrao TRUE
         if ($retorno) {

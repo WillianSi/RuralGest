@@ -8,7 +8,8 @@ $data_servico = $_POST['data_servico'];
 $descricao = $_POST['descricao'];
 $nota_fiscal = $_POST['nota_fiscal'];
 
-$dados = editarOrdem($codigo,$preco,$data_servico,$descricao,$nota_fiscal);
+$dados = editarOrdem($codigo,$tipo, $preco, $data_servico, $descricao, $nota_fiscal, $cod_servico);
+
 if ($dados == 1){
 	$_SESSION['texto_sucesso'] = 'Os dados de gastos foram alterados no sistema.';
 	header ("Location:cad_ordem.php");

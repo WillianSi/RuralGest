@@ -1,13 +1,12 @@
-
 <?php
 require_once('../valida_session/valida_session.php');
-require_once('../layout/header.php'); 
+require_once('../layout/header.php');
 require_once('../layout/sidebar.php');
-require_once ("../bd/bd_generico.php");
+require_once("../bd/bd_generico.php");
 
 $codigo = $_GET['cod'];
 $tabela = 'financas';
-$dados = buscaDadoseditar($tabela,$codigo);
+$dados = buscaDadoseditar($tabela, $codigo);
 
 $tabela = "servicos";
 $servicos = listaDados($tabela);
@@ -25,7 +24,7 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
 <!-- Main Content -->
 <div id="content">
 
-    <?php require_once('../layout/navbar.php');?>
+    <?php require_once('../layout/navbar.php'); ?>
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
@@ -38,9 +37,9 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                     </div>
                 </div>
             </div>
-            
+
             <div class="card-body">
-                
+
                 <?php
                 if (isset($_SESSION['texto_erro'])) :
                 ?>
@@ -68,19 +67,22 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                 endif;
                 ?>
 
-                    <form class="user" action="editar_ordem_envia.php" method="post">
-                    <input type="hidden" name="cod" value="<?=$cod?>">
+                <form class="user" action="editar_ordem_envia.php" method="post">
+                    <input type="hidden" name="cod" value="<?= $cod ?>">
                     <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label> Serviço </label>
-                        <select class="form-control" id="cod_servico" name="cod_servico">
-                            <?php foreach ($servicos as $dados) : ?>
-                                <option value="<?= $dados['cod'] ?>" <?= ($dados['cod'] == $cod_servico) ? 'selected' : '' ?>>
-                                    <?= $dados['nome'] ?>
-                                </option>
-                            <?php endforeach ?>
-                        </select>
+
+                        <div class="col-md-6">
+                            <label>Serviço</label>
+                            <select class="form-control" id="cod_servico" name="cod_servico" required>
+                                <option value="">Selecione um serviço</option>
+                                <?php foreach ($servicos as $dados) : ?>
+                                    <option value="<?= $dados['cod'] ?>" <?= ($dados['cod'] == $cod_servico) ? 'selected' : '' ?>>
+                                        <?= $dados['nome'] ?>
+                                    </option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
+
                         <div class="col-md-6">
                             <label for="preco">Preço:</label>
                             <input type="text" class="form-control form-control" id="preco" name="preco" value="<?= $preco ?>" required>
@@ -88,22 +90,22 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                     </div>
 
                     <div class="form-group row">
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="tipo">Tipo:</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="tipo" id="despesa" value="0" <?php echo ($tipo == 1) ? 'checked' : ''; ?>>
-                                <label class="form-check-label" for="despesa">
-                                    Despesa
-                                </label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tipo">Tipo:</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="despesa" value="0" <?php echo ($tipo == 1) ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="despesa">
+                                        Despesa
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipo" id="receita" value="1" <?php echo ($tipo == 0) ? 'checked' : ''; ?>>
+                                    <label class="form-check-label" for="receita">
+                                        Receita
+                                    </label>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="tipo" id="receita" value="1" <?php echo ($tipo == 0) ? 'checked' : ''; ?>>
-                                <label class="form-check-label" for="receita">
-                                    Receita
-                                </label>
-                            </div>
-                        </div>
                         </div>
                         <div class="col-md-6">
                             <label> Data do Serviço </label>
@@ -112,21 +114,21 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                     </div>
 
                     <div class="form-group row">
-                             <div class="col-md-6">
-                             <label>Descrição (Opcional):</label>
-                        <textarea class="form-control form-control-user2" id="descricao" name="descricao" placeholder="Descrição da receita ou despesa" rows="4"><?= $descricao ?></textarea>
-                            </div>                   
+                        <div class="col-md-6">
+                            <label>Descrição (Opcional):</label>
+                            <textarea class="form-control form-control-user2" id="descricao" name="descricao" placeholder="Descrição da receita ou despesa" rows="4"><?= $descricao ?></textarea>
+                        </div>
                     </div>
 
                     <div class="form-group row">
-                    <div class="col-md-6">
-                        <label for="nota_fiscal">Nota fiscal (Opcional)</label><br>
-                        <?php if (!empty($nota_fiscal)) : ?>
-                            <a href="mostrar_nota.php?cod=<?= $cod ?>" class="btn btn-success">Visualizar</a>
-                        <?php endif; ?>
-                        <input class="form-control-user2" type="file" id="formFile" accept=".pdf,.jpg,.jpeg" name="nota" required>
+                        <div class="col-md-6">
+                            <label for="nota_fiscal">Nota fiscal (Opcional)</label><br>
+                            <?php if (!empty($nota_fiscal)) : ?>
+                                <a href="mostrar_nota.php?cod=<?= $cod ?>" class="btn btn-success">Visualizar</a>
+                            <?php endif; ?>
+                            <input class="form-control-user2" type="file" id="formFile" accept=".pdf,.jpg,.jpeg" name="nota">
+                        </div>
                     </div>
-                    </div>                
 
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
@@ -134,7 +136,7 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                             <a title="Adicionar"><button type="submit" name="updatebtn" class="btn btn-primary uptadebtn"><i class="fas fa-edit">&nbsp;</i>Atualizar</button> </a>
                         </div>
                     </div>
-                </form>  
+                </form>
             </div>
         </div>
 

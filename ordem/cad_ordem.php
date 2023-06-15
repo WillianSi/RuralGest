@@ -197,7 +197,7 @@ $servicos = listaDados($tabela);
                     </div>
 
                 </thead>
-                <tbody>
+                <tbody >
                     <?php
                     require_once("../bd/bd_ordem.php"); // Inclua o arquivo que contém a função buscarOrdens()
 
