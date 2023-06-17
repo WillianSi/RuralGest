@@ -56,4 +56,15 @@ function removeDados($tabela,$codigo){
       return 0;
   }   
 }
+
+function buscaDadosSomar($tabela, $tipo) {
+  $conexao = conecta_bd();
+  $query = $conexao->prepare("SELECT SUM(preco) as soma_precos FROM $tabela WHERE tipo = ?");
+  $query->bindParam(1,$tipo);
+  $query->execute();
+  $resultado = $query->fetch(PDO::FETCH_ASSOC);
+  $soma_precos = $resultado['soma_precos'];
+
+  return $soma_precos;
+}
 ?>

@@ -69,6 +69,19 @@ function buscaOrdens()
     return $dados_ordem;
 }
 
+function pesquisaOrdens($cod_servico)
+{
+    $conexao = conecta_bd();
+
+    $query = $conexao->prepare("SELECT * FROM financas WHERE cod_servico = :cod_servico");
+    $query->bindParam(":cod_servico", $cod_servico);
+    $query->execute();
+
+    $dados_ordem = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $dados_ordem;
+}
+
 function buscaOrdemeditar($codigo)
 {
     $conexao = conecta_bd();

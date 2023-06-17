@@ -2,6 +2,7 @@
 require_once('../valida_session/valida_session.php');
 require_once('../layout/header.php');
 require_once('../layout/sidebar.php');
+require_once('../bd/bd_generico.php');
 ?>
 
 <!-- Main Content -->
@@ -12,7 +13,7 @@ require_once('../layout/sidebar.php');
     <div class="container-fluid mb-4">
 
         <!-- Content Row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-4">
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4 mr-4">
@@ -22,10 +23,17 @@ require_once('../layout/sidebar.php');
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Lucro (Total)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php
+                                        $tabela = "financas"; // Nome da tabela no seu banco de dados
+                                        $tipo = 0; // Código a ser usado na consulta
+                                        $soma_despesas = buscaDadosSomar($tabela, $tipo);
+                                        echo "$" . number_format($soma_despesas, 2);
+                                        ?>
+                                    </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="fas fa-arrow-up fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -40,10 +48,17 @@ require_once('../layout/sidebar.php');
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     Despesas (Total)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        <?php
+                                        $tabela = "financas"; // Nome da tabela no seu banco de dados
+                                        $tipo = 1; // Código a ser usado na consulta
+                                        $soma_despesas = buscaDadosSomar($tabela, $tipo);
+                                        echo "$" . number_format($soma_despesas, 2);
+                                        ?>
+                                    </div>
                             </div>
                             <div class="col-auto">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                <i class="fas fa-arrow-down fa-2x text-gray-300"></i>
                             </div>
                         </div>
                     </div>
@@ -51,7 +66,7 @@ require_once('../layout/sidebar.php');
             </div>
         </div>
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card o-hidden border-0 shadow-lg">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">

@@ -14,7 +14,6 @@ $servicos = listaDados($tabela);
 
     <?php require_once('../layout/navbar.php'); ?>
 
-    <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <div class="card shadow mb-2">
@@ -97,16 +96,13 @@ $servicos = listaDados($tabela);
                     </div>
                     <div class="form-group">
                         <label>Descrição (Opcional):</label>
-                        <textarea class="form-control form-control-user2" id="descricao" name="descricao" 
-                        placeholder="Descrição da receita ou despesa" rows="4"><?php if (!empty($_SESSION['descricao'])) {
-                        echo $_SESSION['descricao'];
-                        } ?></textarea>
+                        <textarea class="form-control form-control-user2" id="descricao" name="descricao" placeholder="Descrição da receita ou despesa" rows="4"><?php if (!empty($_SESSION['descricao'])) {
+                                                                                                                                                                        echo $_SESSION['descricao'];
+                                                                                                                                                                    } ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="nota_fiscal">Nota fiscal (opcional):</label><br>
-                        <input class="form-control-user2" type="file" id="nota" accept=".pdf,.jpg,.jpeg" name="nota" value="<?php if (!empty($_SESSION['nota_fiscal'])) {
-                            echo $_SESSION['nota_fiscal'];
-                        } ?>">
+                        <input class="form-control-user2" type="file" id="nota" accept=".pdf,.jpg,.jpeg" name="nota" value="<?php if (!empty($_SESSION['nota_fiscal'])) {echo $_SESSION['nota_fiscal'];} ?>">
                     </div>
                     <div class="card-footer text-muted" id="btn-form">
                         <div class=text-right>
@@ -122,7 +118,7 @@ $servicos = listaDados($tabela);
 
 
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid mt-4">
 
     <?php require_once('../layout/navbar.php'); ?>
 
@@ -135,35 +131,6 @@ $servicos = listaDados($tabela);
             </div>
         </div>
         <div class="card-body">
-            <?php
-            if (isset($_SESSION['texto_erro'])) :
-            ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong><i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;<?= $_SESSION['texto_erro'] ?></strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <?php
-                unset($_SESSION['texto_erro']);
-            endif;
-            ?>
-            <?php
-            if (isset($_SESSION['texto_sucesso'])) :
-            ?>
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong><i class="fas fa-check"></i>&nbsp;&nbsp;<?= $_SESSION['texto_sucesso'] ?></strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <?php
-                unset($_SESSION['texto_sucesso']);
-            endif;
-            ?>
-
-
-
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -176,25 +143,9 @@ $servicos = listaDados($tabela);
                         <th class="text-center" data-orderable="false">Atualizar</th>
                         <th class="text-center" data-orderable="false">Excluir</th>
                     </tr>
-
-                    <div class="modal fade" id="excluir-<?= $dados['cod']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Excluir ordem</h5>
-                                </div>
-                                <div class="modal-body">Deseja realmente excluir esta informação?</div>
-                                <div class="modal-footer">
-                                    <a href="remove_ordem.php?cod=<?= $dados['cod']; ?>"><button class="btn btn-primary btn-user" type="button">Confirmar</button></a>
-                                    <a href="ordem.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </thead>
-                <tbody >
+
+                <tbody>
                     <?php
                     require_once("../bd/bd_ordem.php"); // Inclua o arquivo que contém a função buscarOrdens()
 
@@ -243,10 +194,20 @@ $servicos = listaDados($tabela);
         </div>
     </div>
 </div>
-</div>
-<!-- /.container-fluid -->
-</div>
 <!-- End of Main Content -->
+
 <?php
 require_once('../layout/footer.php');
 ?>
+
+<script>
+    function toggleBarra() {
+        var barra = document.getElementById("barra-componentes");
+
+        if (barra.style.display === "none") {
+            barra.style.display = "block";
+        } else {
+            barra.style.display = "none";
+        }
+    }
+</script>
