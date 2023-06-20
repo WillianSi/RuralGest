@@ -2,7 +2,8 @@
 
 require_once("conecta_bd.php");
 
-function consultaEmail($tabela,$email){
+function consultaEmail($tabela,$email)
+{
     $conexao = conecta_bd();
     $query = $conexao->prepare("SELECT * FROM $tabela
                 WHERE email = ?");
@@ -17,7 +18,8 @@ function consultaEmail($tabela,$email){
     }   
 }
 
-function cadastraUsuario($nome,$senha,$email,$perfil,$status,$data){
+function cadastraUsuario($nome,$senha,$email,$perfil,$status,$data)
+{
     $conexao = conecta_bd();
 
     $query = $conexao->prepare("INSERT INTO usuario(nome,senha,email,
@@ -37,7 +39,8 @@ function cadastraUsuario($nome,$senha,$email,$perfil,$status,$data){
     }        
 }
 
-function buscaDadoseditarPerfil($tabela,$codigo){
+function buscaDadoseditarPerfil($tabela,$codigo)
+{
     $conexao = conecta_bd();
     $query = $conexao->prepare("SELECT * FROM $tabela
                 WHERE cod = ?");
@@ -49,7 +52,8 @@ function buscaDadoseditarPerfil($tabela,$codigo){
     return $lista;
 }
 
-function editarPerfilUsuario($codigo,$nome,$email,$data){
+function editarPerfilUsuario($codigo,$nome,$email,$data)
+{
     $conexao = conecta_bd();
 
     $query = $conexao->prepare("SELECT * FROM usuario WHERE cod = ?");
@@ -72,7 +76,8 @@ function editarPerfilUsuario($codigo,$nome,$email,$data){
 
 }
 
-function editarSenha($tabela,$codigo,$senha){
+function editarSenha($tabela,$codigo,$senha)
+{
     $conexao = conecta_bd();
 
     $query = $conexao->prepare("SELECT * FROM $tabela WHERE cod = ?");

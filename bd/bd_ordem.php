@@ -69,19 +69,6 @@ function buscaOrdens()
     return $dados_ordem;
 }
 
-function pesquisaOrdens($cod_servico)
-{
-    $conexao = conecta_bd();
-
-    $query = $conexao->prepare("SELECT * FROM financas WHERE cod_servico = :cod_servico");
-    $query->bindParam(":cod_servico", $cod_servico);
-    $query->execute();
-
-    $dados_ordem = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    return $dados_ordem;
-}
-
 function buscaOrdemeditar($codigo)
 {
     $conexao = conecta_bd();
@@ -102,8 +89,35 @@ function buscaOrdemeditar($codigo)
     return $dados;
 }
 
+function editarOrdem($codigo,$tipo, $preco, $data_servico, $descricao, $cod_servico)
+{
+    $conexao = conecta_bd();
 
-function editarOrdem($codigo,$tipo, $preco, $data_servico, $descricao, $nota_fiscal, $cod_servico)
+    $query = $conexao->prepare("SELECT * FROM financas WHERE cod = ?");
+    $query->bindParam(1, $codigo);
+    $query->execute();
+    $retorno = $query->fetch(PDO::FETCH_ASSOC);
+
+    if (count($retorno) > 0) {
+
+        $query = $conexao->prepare("UPDATE financas SET tipo = ?, preco = ?, data_servico = ?, descricao = ?, cod_servico = ? WHERE cod = ?");
+        $query->bindParam(1, $tipo);
+        $query->bindParam(2, $preco);
+        $query->bindParam(3, $data_servico);
+        $query->bindParam(4, $descricao);
+        $query->bindParam(5, $cod_servico);
+        $query->bindParam(6, $codigo);
+
+        $retorno = $query->execute(); //retorno boolean padrao TRUE
+        if ($retorno) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+}
+
+function editarOrdemFiscal($codigo,$tipo, $preco, $data_servico, $descricao, $nota_fiscal, $cod_servico)
 {
     $conexao = conecta_bd();
 
@@ -119,9 +133,12 @@ function editarOrdem($codigo,$tipo, $preco, $data_servico, $descricao, $nota_fis
         $query->bindParam(2, $preco);
         $query->bindParam(3, $data_servico);
         $query->bindParam(4, $descricao);
-        $query->bindParam(5, $nota_fiscal);
+        $query->bindParam(5, $nota_fiscal, PDO::PARAM_LOB);
         $query->bindParam(6, $cod_servico);
         $query->bindParam(7, $codigo);
+
+        // Debug statement to check the value of $nota_fiscal
+        echo "Debug: nota_fiscal = $nota_fiscal<br>";
 
         $retorno = $query->execute(); //retorno boolean padrao TRUE
         if ($retorno) {

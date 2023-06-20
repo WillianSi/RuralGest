@@ -2,7 +2,8 @@
 
 require_once("conecta_bd.php");
 
-function checaLogin($tabela,$email,$senha){
+function checaLogin($tabela,$email,$senha)
+{
     $conexao = conecta_bd();
     $senhaMD5 = md5($senha);
     $query = $conexao->prepare("SELECT * 
@@ -18,7 +19,8 @@ function checaLogin($tabela,$email,$senha){
     return $retorno;
 }
 
-function listaDados($tabela){
+function listaDados($tabela)
+{
   $conexao = conecta_bd();
   $query = $conexao->prepare("SELECT * FROM $tabela
               ORDER BY nome");
@@ -29,7 +31,8 @@ function listaDados($tabela){
   return $lista;
 }
 
-function buscaDadoseditar($tabela,$codigo){
+function buscaDadoseditar($tabela,$codigo)
+{
   $conexao = conecta_bd();
   $query = $conexao->prepare("SELECT * FROM $tabela
               WHERE cod = ?");
@@ -41,7 +44,8 @@ function buscaDadoseditar($tabela,$codigo){
   return $lista;
 }
 
-function removeDados($tabela,$codigo){
+function removeDados($tabela,$codigo)
+{
   $conexao = conecta_bd();
 
   $query = $conexao->prepare("DELETE FROM $tabela
@@ -57,7 +61,8 @@ function removeDados($tabela,$codigo){
   }   
 }
 
-function buscaDadosSomar($tabela, $tipo) {
+function buscaDadosSomar($tabela, $tipo)
+{
   $conexao = conecta_bd();
   $query = $conexao->prepare("SELECT SUM(preco) as soma_precos FROM $tabela WHERE tipo = ?");
   $query->bindParam(1,$tipo);

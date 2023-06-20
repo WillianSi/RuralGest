@@ -120,13 +120,9 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
 
                     <div class="form-group row">
                         <div class="col-md-6">
-                            <label for="nota_fiscal">Nota fiscal (Opcional)</label><br>
-                            <?php if (!empty($nota_fiscal)) : ?>
-                                <a href="mostrar_nota.php?cod=<?= $cod ?>" class="btn btn-success">Visualizar</a>
-                            <?php endif; ?>
-                            <input class="form-control-user2" type="file" id="nota" accept=".pdf,.jpg,.jpeg" name="nota" 
-                            <?php echo (!empty($nota_fiscal)) ? 'disabled' : ''; ?> 
-                            value="<?php if (!empty($_SESSION['nota_fiscal'])) {                                                                                                                                                           } ?>">
+                            <label for="nota_fiscal">Nota fiscal (opcional):</label><br>
+                            <a href="mostrar_nota.php?cod=<?= $cod ?>" class="btn btn-success">Visualizar</a>
+                            <input class="form-control-user2" type="file" id="nota" accept=".pdf,.jpg,.jpeg" name="nota" value="<?php if (!empty($_SESSION['nota_fiscal'])) {echo $_SESSION['nota_fiscal'];} ?>">
                         </div>
                     </div>
 

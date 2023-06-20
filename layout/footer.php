@@ -28,6 +28,24 @@
         </div>
     </div>
 </div>
+
+<!-- Clear Modal-->
+<div class="modal fade" id="clearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Excluir servico</h5>
+            </div>
+            <div class="modal-body">Deseja realmente excluir esta informação?</div>
+            <div class="modal-footer">
+            <a href="../logout/logout.php"><button class="btn btn-success btn-user" type="button">Confirmar</button></a>
+                <a href="../home/home.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

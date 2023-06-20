@@ -2,7 +2,8 @@
 
 require_once("conecta_bd.php");
 
-function cadastraServico($nome){
+function cadastraServico($nome)
+{
     $conexao = conecta_bd();
 
     $query = $conexao->prepare("INSERT INTO servicos(nome) VALUES (?)");
@@ -16,7 +17,8 @@ function cadastraServico($nome){
     }        
 }
 
-function editarServico($codigo,$nome){
+function editarServico($codigo,$nome)
+{
     $conexao = conecta_bd();
 
     $query = $conexao->prepare("SELECT * FROM servicos WHERE cod = ?");

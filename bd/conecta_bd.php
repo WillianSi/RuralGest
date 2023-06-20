@@ -1,5 +1,6 @@
 <?php 
-function conecta_bd(){
+function conecta_bd()
+{
     try {
         $conexao = new PDO("mysql:host=localhost;dbname=ruralgest","root","");
     } catch (PDOException $e) {
