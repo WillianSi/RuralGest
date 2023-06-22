@@ -34,11 +34,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Excluir servico</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Excluir conta</h5>
             </div>
             <div class="modal-body">Deseja realmente excluir esta informação?</div>
             <div class="modal-footer">
-            <a href="../logout/logout.php"><button class="btn btn-success btn-user" type="button">Confirmar</button></a>
+                <a href="../usuario/remove_usuario.php"><button class="btn btn-success btn-user" type="button">Confirmar</button></a>
                 <a href="../home/home.php"><button class="btn btn-danger btn-user" type="button">Cancelar</button></a>
 
             </div>

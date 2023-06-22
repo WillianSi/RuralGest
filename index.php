@@ -81,6 +81,8 @@ session_start();
                                         endif;
                                         ?>
 
+                                        
+
                                         <form class="user" action="valida_login/valida_login.php" method="post">
                                             <div class="form-group">
                                                 <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Insira o endereço de e-mail..." required>

@@ -19,6 +19,6 @@ if (isset($_GET['cod'])) {
 }
 
 // Caso ocorra algum erro ou a nota fiscal não seja encontrada, redirecione para a página de erro ou para a página inicial, por exemplo.
-header("Location: ../ordem/ordem.php");
+header("Location: ../ordem/noPaste.php");
 exit;
 ?>
