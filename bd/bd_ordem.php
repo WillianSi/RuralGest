@@ -137,9 +137,6 @@ function editarOrdemFiscal($codigo,$tipo, $preco, $data_servico, $descricao, $no
         $query->bindParam(6, $cod_servico);
         $query->bindParam(7, $codigo);
 
-        // Debug statement to check the value of $nota_fiscal
-        echo "Debug: nota_fiscal = $nota_fiscal<br>";
-
         $retorno = $query->execute(); //retorno boolean padrao TRUE
         if ($retorno) {
             return 1;

@@ -17,7 +17,7 @@ $tipo = $dados['tipo'];
 $preco = $dados['preco'];
 $data_servico = $dados['data_servico'];
 $descricao = $dados['descricao'];
-$nota_fiscal = base64_encode($dados['nota_fiscal']);
+$nota_fiscal = base64_decode($dados['nota_fiscal']);
 
 ?>
 
@@ -67,7 +67,7 @@ $nota_fiscal = base64_encode($dados['nota_fiscal']);
                 endif;
                 ?>
 
-                <form class="user" action="editar_ordem_envia.php" method="post">
+                <form enctype="multipart/form-data" class="user" action="editar_ordem_envia.php" method="post">
                     <input type="hidden" name="cod" value="<?= $cod ?>">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
