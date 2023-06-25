@@ -1,4 +1,4 @@
-const apiKey = "ad1296d2bc901cd3980c3703c19639e8";
+const apiKey = "";
 const apiUnsplash = "https://source.unsplash.com/1600x900/?";
 
 const cityInput = document.querySelector("#city-input");
