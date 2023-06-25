@@ -22,7 +22,6 @@ else{
 	    $_SESSION['cod_usu'] = $dados['cod'];
 		$_SESSION['nome_usu'] = $dados['nome'];
 		$_SESSION['perfil'] = $dados['perfil'];
-		$_SESSION['status'] = $dados['status'];
 	    header("Location:../home/home.php");
 	}
 	die();
