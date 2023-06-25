@@ -134,6 +134,7 @@ $servicos = listaDados($tabela);
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th style="display:none" ;>cod</th>
                         <th class="text-center">Serviço</th>
                         <th class="text-center">Tipo</th>
                         <th class="text-center">Preço</th>
