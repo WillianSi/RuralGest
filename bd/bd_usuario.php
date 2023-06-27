@@ -18,19 +18,17 @@ function consultaEmail($tabela,$email)
     }   
 }
 
-function cadastraUsuario($nome,$senha,$email,$perfil,$status,$data)
+function cadastraUsuario($nome,$senha,$email,$data)
 {
     $conexao = conecta_bd();
 
     $query = $conexao->prepare("INSERT INTO usuario(nome,senha,email,
-        perfil,status,data) VALUES (?,?,?,?,?,?)");
+        data) VALUES (?,?,?,?)");
 
     $query->bindParam(1,$nome);
     $query->bindParam(2,$senha);
     $query->bindParam(3,$email);
-    $query->bindParam(4,$perfil);
-    $query->bindParam(5,$status);
-    $query->bindParam(6,$data);
+    $query->bindParam(4,$data);
     $retorno = $query->execute();
     if($retorno){
         return 1;

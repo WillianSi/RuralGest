@@ -3,8 +3,6 @@ session_start();
 $nome = $_POST["nome"];
 $senha = md5($_POST["senha"]);
 $email = $_POST["email"];
-$perfil = 1;
-$status = 1;
 $data=date("y/m/d");
 
 require_once ("../bd/bd_usuario.php");
@@ -18,7 +16,7 @@ if($dados != 0){
 	$_SESSION['email'] = $email;
 	header ("Location:criar_conta.php");
 }else{
-	$dados = cadastraUsuario($nome,$senha,$email,$perfil,$status,$data);
+	$dados = cadastraUsuario($nome,$senha,$email,$data);
 	if($dados == 1){
 		$_SESSION['texto_sucesso'] = 'Usuario criado com sucesso.';
 		unset($_SESSION['texto_erro']);
